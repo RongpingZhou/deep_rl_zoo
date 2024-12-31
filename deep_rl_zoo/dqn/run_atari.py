@@ -81,7 +81,6 @@ flags.DEFINE_string('tag', '', 'Add tag to Tensorboard log file.')
 flags.DEFINE_string('results_csv_path', './logs/dqn_atari_results.csv', 'Path for CSV log file.')
 flags.DEFINE_string('checkpoint_dir', './checkpoints', 'Path for checkpoint directory.')
 
-
 def main(argv):
     """Trains DQN agent on Atari."""
     del argv
@@ -110,7 +109,9 @@ def main(argv):
         )
 
     train_env = environment_builder()
+    print("run_atari.py: main(): after train_env build")
     eval_env = environment_builder()
+    print("run_atari.py: main(): after eval_env build")
 
     logging.info('Environment: %s', FLAGS.environment_name)
     logging.info('Action spec: %s', train_env.action_space.n)
@@ -120,7 +121,11 @@ def main(argv):
     action_dim = train_env.action_space.n
 
     # Test environment and state shape.
+    # obs, _ = train_env.reset()
+    print("run_atari.py: main(): right before train_env.reset()")
     obs = train_env.reset()
+    print("run_atari.py: main(): after train_env.reset(), obs shape: ", np.shape(obs), type(obs))
+
     assert isinstance(obs, np.ndarray)
     assert obs.shape == (FLAGS.environment_frame_stack, FLAGS.environment_height, FLAGS.environment_width)
 

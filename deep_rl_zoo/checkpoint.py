@@ -123,6 +123,7 @@ class PyTorchCheckpoint:
 
         # Always load checkpoint state to CPU.
         loaded_state = torch.load(file_to_restore, map_location=torch.device('cpu'))
+        print("file_to_restore: ", file_to_restore)
 
         # Needs to match environment_name and agent name
         if loaded_state['environment_name'] != self.state.environment_name:

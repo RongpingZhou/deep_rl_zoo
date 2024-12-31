@@ -30,7 +30,8 @@ import math
 import multiprocessing
 import threading
 from absl import logging
-import gym
+# import gym
+import gymnasium as gym
 
 # pylint: disable=import-error
 import deep_rl_zoo.trackers as trackers_lib
@@ -84,7 +85,8 @@ def run_env_loop(
             yield env, timestep_t, agent, a_t
 
             a_tm1 = a_t
-            observation, reward, done, info = env.step(a_tm1)
+            # observation, reward, done, info = env.step(a_tm1)
+            observation, reward, done, _, info = env.step(a_tm1)
 
             first_step = False
 
